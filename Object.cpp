@@ -1,0 +1,39 @@
+#include "Object.hpp"
+
+int Object::numIds = 0;
+
+Object::Object(int t, int l, bool k, bool s, Pos2D p, Board& b): board(b){
+	type = t; 
+	life = l;
+	killable = k;
+	solid = s;
+	pos = p;
+	alive = true;
+	id = numIds;
+	numIds++;
+	moving = false;
+}
+
+Pos2D Object::getPos(){
+	return pos;
+}
+
+int Object::getId(){
+	return id;
+}
+
+int Object::getType(){
+	return type;
+}
+
+bool Object::isSolid(){
+	return solid;
+}
+
+bool Object::isKillable(){
+	return killable;
+}
+
+bool Object::isMoving(){
+	return moving;
+}

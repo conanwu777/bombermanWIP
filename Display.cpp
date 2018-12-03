@@ -1,12 +1,12 @@
 #include "Display.hpp"
 
-Display::Display() : tmpinput(0) {
+Display::Display(int wid, int hei) : tmpinput(0), width(wid), height(hei) {
 	initscr();
 	curs_set(0);
 	halfdelay(1);
-	w = newwin(H, W, 10, 10);
+	w = newwin(height, width, 10, 10);
 	refresh();
-	box(w, 0, 0);
+	// box(w, 0, 0);
 	wrefresh(w);
 	keypad(this->w, true);
 	start_color();
@@ -30,11 +30,12 @@ Display	&Display::operator=(Display const &rhs)
 	return (*this);
 }
 
-void Display::getInput() {
+int Display::getInput() {
 	tmpinput = wgetch(w);
+	return tmpinput;
 }
 
-void	Display::addObj(int id, char type, pos p)
+void	Display::addObj(int id, char type, Pos2D p)
 {
 	ViewObj *obj = new ViewObj(type, p);
 	objs[id] = obj;
@@ -45,23 +46,19 @@ void	Display::addObj(int id, char type, pos p)
 void	Display::moveObj(int id, char direction, float amount)
 {
 	ViewObj *o = objs[id];
-	pos tmp = o->p;
+	Pos2D tmp = o->p;
 	switch (direction) {
 		case 'u':
-			if (o->p.y > amount)
-				o->p.y -= amount;
+			o->p.y -= amount;
 			break ;
 		case 'd':
-			if (o->p.y < H - amount - 1)
-				o->p.y += amount;
+			o->p.y += amount;
 			break ;
 		case 'l':
-			if (o->p.x > amount)
-				o->p.x -= amount;
+			o->p.x -= amount;
 			break ;
 		case 'r':
-			if (o->p.x < W - amount - 1)
-				o->p.x += amount;
+			o->p.x += amount;
 			break ;
 		default:
 			return ;

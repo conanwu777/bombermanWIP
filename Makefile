@@ -1,6 +1,6 @@
 NAME = test
 CPPC = clang++
-CFLAGS = -lcurses -Wall -Wextra -Werror
+CFLAGS = -lcurses
 SRC = *.cpp
 OBJ = $(SRC:.cpp=.o)
 

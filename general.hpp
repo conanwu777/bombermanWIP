@@ -7,13 +7,4 @@
 
 using namespace std;
 
-# define W 100
-# define H 50
-
-struct  pos
-{
-	int x;
-	int y;
-};
-
 #endif

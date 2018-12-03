@@ -5,7 +5,7 @@ ViewObj::ViewObj() : type(0) {
 	p.y = 0;
 }
 
-ViewObj::ViewObj(char type, pos p) : type(type), p(p) {}
+ViewObj::ViewObj(char type, Pos2D p) : type(type), p(p) {}
 
 ViewObj::~ViewObj() {}
 
