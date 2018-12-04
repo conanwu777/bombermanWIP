@@ -6,6 +6,12 @@ struct Pos2D{
 	int y;
 };
 
+struct PosF2D{
+	float x;
+	float y;
+};
+
+
 struct Pos3D{
 	int x;
 	int y;

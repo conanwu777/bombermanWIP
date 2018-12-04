@@ -12,6 +12,8 @@ Object::Object(int t, int l, bool k, bool s, Pos2D p, Board& b): board(b){
 	id = numIds;
 	numIds++;
 	moving = false;
+	off.x = 0;
+	off.y = 0;
 }
 
 Pos2D Object::getPos(){

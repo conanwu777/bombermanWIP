@@ -18,7 +18,9 @@ class Board{
 		void moveDisplay(int, char, float);
 		void initBoard();
 		void updateObjs();
-		bool checkWalk(int x, int y);
+		bool checkEmpty(int x, int y);
+		int checkFlameable(int x, int y);
+		void burn(Pos2D pos);
 		void eraseObject(int id);
 		Display& display;
 

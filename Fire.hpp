@@ -1,19 +1,16 @@
-#ifndef BOMB_HPP
-#define BOMB_HPP
+#ifndef FIRE_HPP
+#define FIRE_HPP
 
 #include "Position.hpp"
 #include "Object.hpp"
 
-class Bomb : public Object{
+class Fire : public Object{
 	public:
-		Bomb(Pos2D pos, Board& b);
+		Fire(Pos2D pos, Board& b, int range, char dir);
 		void update();
 	private:
 		float startTime;
 		float duration;
-		void explode();
-		void onBomb();
-
 };
 
 #endif

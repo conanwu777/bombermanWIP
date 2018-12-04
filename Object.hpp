@@ -15,12 +15,14 @@ class Object{
 		bool isKillable();
 		virtual void move(char dir){};
 		virtual void update(){};
+		virtual void onBomb(){};
 		int life;
 		bool alive;
 
 	protected:
 		static int numIds;
 		Pos2D pos;
+		PosF2D off;
 		int id;
 		int type;
 		bool moving;

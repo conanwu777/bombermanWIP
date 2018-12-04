@@ -1,10 +1,10 @@
 #include "Display.hpp"
 
-Display::Display(int wid, int hei) : tmpinput(0), width(wid), height(hei) {
+Display::Display(int wid, int hei) : tmpinput(0), width(wid * 2), height(hei) {
 	initscr();
 	curs_set(0);
 	halfdelay(1);
-	w = newwin(height, width, 10, 10);
+	w = newwin(height, width, 10, 20);
 	refresh();
 	// box(w, 0, 0);
 	wrefresh(w);
@@ -37,6 +37,7 @@ int Display::getInput() {
 
 void	Display::addObj(int id, char type, Pos2D p)
 {
+	p.x *= 2;
 	ViewObj *obj = new ViewObj(type, p);
 	objs[id] = obj;
 	mvwaddch(w, p.y, p.x, type);
@@ -55,10 +56,10 @@ void	Display::moveObj(int id, char direction, float amount)
 			o->p.y += amount;
 			break ;
 		case 'l':
-			o->p.x -= amount;
+			o->p.x -= 2 * amount;
 			break ;
 		case 'r':
-			o->p.x += amount;
+			o->p.x += 2 * amount;
 			break ;
 		default:
 			return ;

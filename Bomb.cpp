@@ -1,4 +1,5 @@
 #include "Bomb.hpp"
+#include "Fire.hpp"
 #include "Time.hpp"
 
 Bomb::Bomb(Pos2D p, Board& b) : Object('*', 0, true, true, p, b){
@@ -12,9 +13,16 @@ void	Bomb::update()
 		explode();
 }
 
+void	Bomb::onBomb(){
+	explode();
+}
+
 void	Bomb::explode()
 {
 	board.eraseObject(id);
-	//explosion
+	board.objs.push_back(new Fire(pos, board, 3, 'a'));
+	board.display.addObj(board.objs[board.objs.size() - 1]->getId(),
+		board.objs[board.objs.size() - 1]->getType(),
+		board.objs[board.objs.size() - 1]->getPos());
 	delete this;
 }
