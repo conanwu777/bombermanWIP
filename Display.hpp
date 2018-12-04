@@ -20,6 +20,7 @@ class Display {
 		int	getInput();
 		void	addObj(int id, char type, Pos2D p);
 		void	moveObj(int id, char direction, float amount);
+		void	eraseObj(int id);
 };
 
 #endif

@@ -7,7 +7,6 @@
 class Wall : public Object{
 	public:
 		Wall(Pos2D pos, Board& b);
-		void move(char dir);
 	private:
 		
 };

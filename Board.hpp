@@ -11,7 +11,7 @@ using namespace std;
 
 class Board{
 	public:
-		vector<vector<Object*> > board;
+		vector<vector<vector<Object*> > > board;
 		Pos2D bounds;
 		Board(int sX, int sY, Display& d);
 		void swap(int x, int y, int nX, int nY);
@@ -20,8 +20,6 @@ class Board{
 		bool checkWalk(int x, int y);
 		int pX;
 		int pY;
-
-	private:
 		Display& display;
 
 };

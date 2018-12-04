@@ -67,3 +67,11 @@ void	Display::moveObj(int id, char direction, float amount)
 	mvwaddch(w, o->p.y, o->p.x, o->type);
 	wrefresh(w);
 }
+
+void	Display::eraseObj(int id)
+{
+	ViewObj *o = objs[id];
+	objs[id] = NULL;
+	mvwaddch(w, o->p.y, o->p.x, ' ');
+	free(o);
+}

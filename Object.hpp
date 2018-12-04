@@ -13,7 +13,8 @@ class Object{
 		bool isSolid();
 		bool isMoving();
 		bool isKillable();
-		virtual void move(char dir) = 0;
+		virtual void move(char dir){};
+		virtual void update(){};
 		int life;
 		bool alive;
 
