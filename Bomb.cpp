@@ -1,8 +1,9 @@
 #include "Bomb.hpp"
 #include "Time.hpp"
 
-Bomb::Bomb(Pos2D p, Board& b) : Object('p', 0, true, true, p, b){
+Bomb::Bomb(Pos2D p, Board& b) : Object('*', 0, true, true, p, b){
 	startTime = Time::curTime;
+	duration = 1;
 }
 
 void	Bomb::update()
@@ -13,8 +14,7 @@ void	Bomb::update()
 
 void	Bomb::explode()
 {
-	board.board[pos.x][pos.y] = NULL;
-	board.display.eraseObj(id);
+	board.eraseObject(id);
 	//explosion
 	delete this;
 }

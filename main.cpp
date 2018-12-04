@@ -1,11 +1,14 @@
 #include "Board.hpp"
 #include "Object.hpp"
+#include "Player.hpp"
 #include "Time.hpp"
 //forncurse
 #include "general.hpp"
 
 int main()
 {
+	glfwInit();
+
 	Time::updateTime();
 
 	Display d(11, 11);
@@ -13,18 +16,22 @@ int main()
 
 	while(1){
 		Time::updateTime();
+		b.updateObjs();
 		int in = d.getInput();
 		if (in == KEY_UP){
-			b.board[b.pX][b.pY]->move('u');
+			b.objs[0]->move('u');
 		}
 		if (in == KEY_DOWN){
-			b.board[b.pX][b.pY]->move('d');
+			b.objs[0]->move('d');
 		}
 		if (in == KEY_LEFT){
-			b.board[b.pX][b.pY]->move('l');
+			b.objs[0]->move('l');
 		}
 		if (in == KEY_RIGHT){
-			b.board[b.pX][b.pY]->move('r');
+			b.objs[0]->move('r');
+		}
+		if (in == ' '){
+			dynamic_cast<Player*>(b.objs[0])->dropBomb();
 		}
 	}
 }

@@ -4,6 +4,7 @@
 # include <GLFW/glfw3.h>
 # include <ncurses.h>
 # include <iostream>
+# include <iterator>
 # include <map>
 
 using namespace std;

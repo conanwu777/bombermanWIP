@@ -1,19 +1,25 @@
 #include "Player.hpp"
+#include "Bomb.hpp"
 
-Player::Player(Pos2D p, Board& b) : Object('p', 0, false, true, p, b){
+Player::Player(Pos2D p, Board& b) : Object('o', 0, false, true, p, b){
 }
 
 bool	Player::tryMove(float x, float y, char dir){
 	if (x >= 0 && x < board.bounds.x && y >= 0 && y < board.bounds.y && board.checkWalk(x,y)){
-		board.swap(pos.x, pos.y, x, y);
+		// board.swap(pos.x, pos.y, x, y);
 		board.moveDisplay(id, dir, 1);
 		pos.x = x;
 		pos.y = y;
-		board.pX = pos.x;
-		board.pY = pos.y;
 		return true;
 	}
 	return false;
+}
+
+void Player::dropBomb(){
+	board.objs.push_back(new Bomb(pos, board));
+	board.display.addObj(board.objs[board.objs.size() - 1]->getId(),
+		board.objs[board.objs.size() - 1]->getType(),
+		board.objs[board.objs.size() - 1]->getPos());
 }
 
 void Player::move(char dir){

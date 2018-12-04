@@ -6,48 +6,64 @@ void Board::initBoard(){
 
 	Pos2D tmp;
 
-	board.reserve(bounds.x * sizeof(vector<Object*>));
-	for (int x = 0; x < bounds.x; x++){
+	objs.reserve(bounds.x * bounds.y * sizeof(Object*));
+	
+	tmp.x = 7;
+	tmp.y = 1;
+	objs.push_back(new Player(tmp, *this));
+	display.addObj(objs[objs.size() - 1]->getId(),
+		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
+
+	for (int x = 0; x < bounds.x; x++)
+	{
 		tmp.x = x;
-		board[x].reserve(bounds.y * sizeof(Object*));
-		for (int y = 0; y < bounds.y; y++){
+		for (int y = 0; y < bounds.y; y++)
+		{
 			tmp.y = y;
-			board[x][y][0] = NULL;
-			if (x == 0 || y == 0 || x == bounds.x - 1 || y == bounds.y - 1 || (x % 2 == 0 && y % 2 == 0)){
-				board[x][y][0] = new Wall(tmp, *this);
-				display.addObj(board[x][y]->getId(), board[x][y]->getType(), board[x][y]->getPos());
+			if (x == 0 || y == 0 || x == bounds.x - 1 || y == bounds.y - 1
+				|| (x % 2 == 0 && y % 2 == 0))
+			{
+				objs.push_back(new Wall(tmp, *this));
+				display.addObj(objs[objs.size() - 1]->getId(),
+					objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
 			}
 		}
 	}
-	tmp.x = 7;
-	tmp.y = 1;
-	board[7][1][0] = new Player(tmp, *this);
-	display.addObj(board[7][1][0]->getId(), 'p', board[7][1][0]->getPos());
-	pX = 7;
-	pY = 1;
-
 }
 
-bool Board::checkWalk(int x, int y){
-	if (board[x][y][0] == NULL || !board[x][y][0]->isSolid()){
-		return true;
-	}
-	return false;
+void Board::updateObjs()
+{
+	for (int i = 0; i < objs.size(); i++)
+		objs[i]->update();
 }
 
-void Board::swap(int x, int y, int nX, int nY){
-	board[nX][nY][0] = board[x][y];
-	board[x][y][0] = NULL;
+void Board::eraseObject(int id)
+{
+	for (int i = 0; i < objs.size(); i++)
+		if (objs[i]->getId() == id){
+			objs.erase(objs.begin() + i);
+			break;
+		}
+	display.eraseObj(id);
 }
 
-void Board::moveDisplay(int id, char dir, float amount){
+bool Board::checkWalk(int x, int y)
+{
+	for (int i = 0; i < objs.size(); i++)
+		if (objs[i]->getPos().x == x && objs[i]->getPos().y == y && objs[i]->isSolid())
+			return false;
+	return true;
+}
+
+void Board::moveDisplay(int id, char dir, float amount)
+{
 	display.moveObj(id, dir, amount);
 }
 
-Board::Board(int sX, int sY, Display& d) : display(d){
+Board::Board(int sX, int sY, Display& d) : display(d)
+{
 	bounds.x = sX;
 	bounds.y = sY;
-
 	initBoard();
 }
 
