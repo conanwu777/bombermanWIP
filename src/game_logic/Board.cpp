@@ -2,6 +2,8 @@
 #include "../../inc/game_logic/Wall.hpp"
 #include "../../inc/game_logic/BreakWall.hpp"
 #include "../../inc/game_logic/Player.hpp"
+#include "../../inc/game_logic/BombPowerUp.hpp"
+#include "../../inc/game_logic/FirePowerUp.hpp"
 
 void Board::initBoard(){
 
@@ -12,6 +14,16 @@ void Board::initBoard(){
 	tmp.x = 1;
 	tmp.y = 1;
 	objs.push_back(new Player(tmp, *this));
+	display.addObj(objs[objs.size() - 1]->getId(),
+		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
+	tmp.x = 3;
+
+	objs.push_back(new BombPowerUp(tmp, *this));
+	display.addObj(objs[objs.size() - 1]->getId(),
+		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
+	tmp.x = 2;
+
+	objs.push_back(new FirePowerUp(tmp, *this));
 	display.addObj(objs[objs.size() - 1]->getId(),
 		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
 
@@ -39,15 +51,17 @@ void Board::initBoard(){
 
 void Board::updateObjs()
 {
-	for (int i = 0; i < objs.size(); i++)
+	for (i = 0; i < objs.size(); i++)
 		objs[i]->update();
 }
 
 void Board::eraseObject(int id)
 {
-	for (int i = 0; i < objs.size(); i++)
-		if (objs[i]->getId() == id){
-			objs.erase(objs.begin() + i);
+	for (int j = 0; j < objs.size(); j++)
+		if (objs[j]->getId() == id){
+			objs.erase(objs.begin() + j);
+			i--;
+			size--;
 			break;
 		}
 	display.eraseObj(id);
@@ -55,7 +69,7 @@ void Board::eraseObject(int id)
 
 bool Board::checkEmpty(int x, int y)
 {
-	for (int i = 0; i < objs.size(); i++)
+	for (i = 0; i < objs.size(); i++)
 		if (objs[i]->getPos().x == x && objs[i]->getPos().y == y && objs[i]->isSolid())
 			return false;
 	return true;
@@ -63,7 +77,8 @@ bool Board::checkEmpty(int x, int y)
 
 void Board::burn(Pos2D pos)
 {
-	for (int i = 0; i < objs.size(); i++)
+	size = objs.size();
+	for (int i = 0; i < size; i++)
 		if (objs[i]->getPos().x == pos.x && objs[i]->getPos().y == pos.y && objs[i]->isKillable()){
 			objs[i]->onBomb();
 		}
@@ -82,10 +97,20 @@ int Board::checkFlameable(int x, int y)
 	return num;
 }
 
-void Board::moveDisplay(int id, char dir, float amount)
+void Board::moveDisplay(int id, char dir, float x, float y)
 {
-	display.moveObj(id, dir, amount);
+	display.moveObj(id, dir, x, y);
 }
+
+void	Board::playerMoved(int x, int y, Player& pl){
+	size = objs.size();
+	for (i = 0; i < size; i++){
+		if (objs[i]->getPos().x == x && objs[i]->getPos().y == y){
+			objs[i]->onPlayer(pl);
+		}
+	}
+}
+
 
 Board::Board(int sX, int sY, Display& d) : display(d)
 {

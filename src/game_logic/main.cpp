@@ -2,6 +2,7 @@
 #include "../../inc/game_logic/Object.hpp"
 #include "../../inc/game_logic/Player.hpp"
 #include "../../inc/game_logic/Time.hpp"
+#include "../../inc/game_logic/Input.hpp"
 //forncurse
 #include "../../inc/game_logic/general.hpp"
 
@@ -13,6 +14,10 @@ int main()
 
 	Display d(11, 11);
 	Board b(11, 11, d);
+
+	//DOES nOTHING FOR NOW, pass d.window once that's a thing
+	Input::setBoard(&b);
+	glfwSetKeyCallback(glfwCreateWindow(640, 480, "My Title", NULL, NULL), Input::keyDown);
 
 	while(1){
 		Time::updateTime();

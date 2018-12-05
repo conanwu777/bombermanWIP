@@ -4,6 +4,9 @@
 #include "Position.hpp"
 #include "Board.hpp"
 
+class Player;
+
+
 class Object{
 	public:
 		Object(int type, int life, bool killable, bool solid, Pos2D pos, Board& b);
@@ -16,6 +19,7 @@ class Object{
 		virtual void move(char dir){};
 		virtual void update(){};
 		virtual void onBomb(){};
+		virtual void onPlayer(Player& player){};
 		int life;
 		bool alive;
 

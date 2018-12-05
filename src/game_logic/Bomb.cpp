@@ -2,9 +2,10 @@
 #include "../../inc/game_logic/Fire.hpp"
 #include "../../inc/game_logic/Time.hpp"
 
-Bomb::Bomb(Pos2D p, Board& b) : Object('*', 0, true, true, p, b){
+Bomb::Bomb(Pos2D p, Board& b, int r, Player& pl) : player(pl), Object('*', 0, true, true, p, b){
 	startTime = Time::curTime;
-	duration = 1;
+	duration = 3;
+	range = r;
 }
 
 void	Bomb::update()
@@ -19,8 +20,9 @@ void	Bomb::onBomb(){
 
 void	Bomb::explode()
 {
+	player.addBomb();
 	board.eraseObject(id);
-	board.objs.push_back(new Fire(pos, board, 3, 'a'));
+	board.objs.push_back(new Fire(pos, board, range, 'a'));
 	board.display.addObj(board.objs[board.objs.size() - 1]->getId(),
 		board.objs[board.objs.size() - 1]->getType(),
 		board.objs[board.objs.size() - 1]->getPos());
