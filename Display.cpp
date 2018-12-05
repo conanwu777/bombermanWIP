@@ -1,6 +1,6 @@
 #include "Display.hpp"
 
-Display::Display(int wid, int hei) : tmpinput(0), width(wid * 2), height(hei) {
+Display::Display(int wid, int hei) : tmpinput(0), width(wid * 10), height(hei * 5) {
 	initscr();
 	curs_set(0);
 	halfdelay(1);
@@ -37,7 +37,8 @@ int Display::getInput() {
 
 void	Display::addObj(int id, char type, Pos2D p)
 {
-	p.x *= 2;
+	p.x *= 10;
+	p.y *= 5;
 	ViewObj *obj = new ViewObj(type, p);
 	objs[id] = obj;
 	mvwaddch(w, p.y, p.x, type);
@@ -50,16 +51,16 @@ void	Display::moveObj(int id, char direction, float amount)
 	Pos2D tmp = o->p;
 	switch (direction) {
 		case 'u':
-			o->p.y -= amount;
+			o->p.y -= int(5 * amount);
 			break ;
 		case 'd':
-			o->p.y += amount;
+			o->p.y += int(5 * amount);
 			break ;
 		case 'l':
-			o->p.x -= 2 * amount;
+			o->p.x -= int(10 * amount);
 			break ;
 		case 'r':
-			o->p.x += 2 * amount;
+			o->p.x += int(10 * amount);
 			break ;
 		default:
 			return ;
