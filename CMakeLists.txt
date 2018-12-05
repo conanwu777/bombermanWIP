@@ -11,16 +11,18 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(SOURCES
 #        src/game_logic/Bomb.cpp
 #        src/game_logic/Board.cpp
+#        src/game_logic/BombPowerUp.cpp
 #        src/game_logic/BreakWall.cpp
 #        src/game_logic/Display.cpp
 #        src/game_logic/Fire.cpp
-#        src/game_logic/general.hpp
+#        src/game_logic/FirePowerUp.cpp
+#        src/game_logic/Input.cpp
+#        src/game_logic/main.cpp
 #        src/game_logic/Object.cpp
 #        src/game_logic/Player.cpp
 #        src/game_logic/Time.cpp
 #        src/game_logic/ViewObj.cpp
 #        src/game_logic/Wall.cpp
-#        src/game_logic/main.cpp
         src/main.cpp
         src/Core.cpp
         src/Camera.cpp
@@ -38,15 +40,19 @@ set(SOURCES
         src/TextObject.cpp
         src/AnimationManager.cpp
         src/Cube.cpp
-        src/OBJObject.cpp)
+        src/OBJObject.cpp
+        src/GameLogic.cpp)
 
 set(HEADERS
 #        inc/game_logic/Board.hpp
 #        inc/game_logic/Bomb.hpp
+#        inc/game_logic/BombPowerUp.hpp
 #        inc/game_logic/BreakWall.hpp
 #        inc/game_logic/Display.hpp
 #        inc/game_logic/Fire.hpp
+#        inc/game_logic/FirePowerUp.hpp
 #        inc/game_logic/general.hpp
+#        inc/game_logic/Input.hpp
 #        inc/game_logic/Object.hpp
 #        inc/game_logic/Player.hpp
 #        inc/game_logic/Position.hpp
@@ -72,7 +78,8 @@ set(HEADERS
         inc/TextObject.hpp
         inc/AnimationManager.hpp
         inc/Cube.hpp
-        inc/OBJObject.hpp)
+        inc/OBJObject.hpp
+        inc/GameLogic.hpp)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)

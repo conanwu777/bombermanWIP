@@ -15,6 +15,7 @@
 # include "OBJObject.hpp"
 # include "AnimationManager.hpp"
 # include "Cube.hpp"
+# include "GameLogic.hpp"
 
 class Core
 {
@@ -26,6 +27,8 @@ public:
     Axes          axes;
 
     TextObject    fps_counter;
+
+    GameLogic     game_logic;
 
     OBJObject     tree; /// Must give each object an ID
     OBJObject     tree_2; /// Must give each object an ID

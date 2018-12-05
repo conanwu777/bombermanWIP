@@ -27,14 +27,6 @@ Core::handleKeyEvent(int key, int scancode, int action, int mods)
     {
         render_manager.camera.toggleMegaBoostSpeed();
     }
-    if (key == GLFW_KEY_P && action == GLFW_RELEASE)
-    {
-        render_manager.cyclePolygonRenderMode();
-    }
-    if (key == GLFW_KEY_G && action == GLFW_RELEASE)
-    {
-        _show_debug_info = !_show_debug_info;
-    }
     if (key == GLFW_KEY_1 && action == GLFW_PRESS)
     {
         animation_manager.loadMinimal();
@@ -130,6 +122,7 @@ Core::~Core() = default;
 void
 Core::init()
 {
+    game_logic.init();
 //    cl_wrapper.init();
     animation_manager.init();
     tree.linked_matrix = &animation_manager.v_model_attrib[0].matrix;
