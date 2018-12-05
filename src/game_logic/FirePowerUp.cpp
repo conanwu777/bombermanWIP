@@ -1,6 +1,6 @@
 #include "../../inc/game_logic/FirePowerUp.hpp"
 
-FirePowerUp::FirePowerUp(Pos2D pos, Board& b) : BombPowerUp(pos, b, 'f'){
+FirePowerUp::FirePowerUp(Pos2D pos, Board& b) : BombPowerUp(pos, b, FIRE_POWER_UP_GAME) {
 
 }
 

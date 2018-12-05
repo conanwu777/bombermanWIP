@@ -41,7 +41,7 @@ void	Display::addObj(int id, char type, Pos2D p)
 	p.y *= 5;
 	ViewObj *obj = new ViewObj(type, p);
 	objs[id] = obj;
-	mvwaddch(w, p.y, p.x, type);
+	mvwaddch(w, p.y, p.x, type + '0');
 	wrefresh(w);
 }
 
@@ -57,7 +57,7 @@ void	Display::moveObj(int id, char dir, float x, float y)
 	for (map<int, ViewObj*>::iterator it = objs.begin(); it != objs.end(); ++it)
 		if (it->second->p.x == tmp.x && it->second->p.y == tmp.y)
 			mvwaddch(w, tmp.y, tmp.x, it->second->type);	
-	mvwaddch(w, o->p.y, o->p.x, o->type);
+	mvwaddch(w, o->p.y, o->p.x, o->type + '0');
 	wrefresh(w);
 }
 

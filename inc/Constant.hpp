@@ -126,7 +126,7 @@ enum kernels
 //  Game Objects  //
 ////////////////////
 
-enum object
+enum objectType
 {
     PLAYER_GAME,
     BOMB_GAME,

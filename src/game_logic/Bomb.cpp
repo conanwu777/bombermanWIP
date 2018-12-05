@@ -2,7 +2,7 @@
 #include "../../inc/game_logic/Fire.hpp"
 #include "../../inc/game_logic/Time.hpp"
 
-Bomb::Bomb(Pos2D p, Board& b, int r, Player& pl) : player(pl), Object('*', 0, true, true, p, b){
+Bomb::Bomb(Pos2D p, Board& b, int r, Player& pl) : player(pl), Object(BOMB_GAME, 0, true, true, p, b){
 	startTime = Time::curTime;
 	duration = 3;
 	range = r;

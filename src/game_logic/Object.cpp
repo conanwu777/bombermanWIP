@@ -2,7 +2,7 @@
 
 int Object::numIds = 0;
 
-Object::Object(int t, int l, bool k, bool s, Pos2D p, Board& b): board(b){
+Object::Object(objectType t, int l, bool k, bool s, Pos2D p, Board& b): board(b){
 	type = t; 
 	life = l;
 	killable = k;

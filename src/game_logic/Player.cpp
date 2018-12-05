@@ -2,7 +2,7 @@
 #include "../../inc/game_logic/Bomb.hpp"
 #include <math.h>
 
-Player::Player(Pos2D p, Board& b) : Object('o', 0, true, false, p, b){
+Player::Player(Pos2D p, Board& b) : Object(PLAYER_GAME, 0, true, false, p, b){
 	numBombs = 1;
 	bombRange = 1;
 	speed = 0.2;

@@ -3,13 +3,14 @@
 
 #include "Position.hpp"
 #include "Board.hpp"
+#include "../Constant.hpp"
 
 class Player;
 
 
 class Object{
 	public:
-		Object(int type, int life, bool killable, bool solid, Pos2D pos, Board& b);
+		Object(objectType type, int life, bool killable, bool solid, Pos2D pos, Board& b);
 		Pos2D getPos();
 		int getId();
 		int getType();
@@ -28,7 +29,7 @@ class Object{
 		Pos2D pos;
 		PosF2D off;
 		int id;
-		int type;
+		objectType type;
 		bool moving;
 		bool solid;
 		bool killable;

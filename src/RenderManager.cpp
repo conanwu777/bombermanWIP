@@ -165,9 +165,9 @@ RenderManager::initGLFW(void *core_ptr, GLFWkeyfun keyCallback, GLFWcursorposfun
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_SAMPLES, SAMPLE_RATE);
     if (FULL_SCREEN)
-        window = glfwCreateWindow(res_x, res_y, "ft_vox", glfwGetPrimaryMonitor(), nullptr);
+        window = glfwCreateWindow(res_x, res_y, "Bomberman (PROBABLY WANT TO BE MORE CREATIVE)", glfwGetPrimaryMonitor(), nullptr);
     else
-        window = glfwCreateWindow(res_x, res_y, "ft_vox", nullptr, nullptr);
+        window = glfwCreateWindow(res_x, res_y, "Bomberman (PROBABLY WANT TO BE MORE CREATIVE)", nullptr, nullptr);
 
     if (!window)
     {
