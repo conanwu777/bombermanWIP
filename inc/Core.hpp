@@ -14,6 +14,7 @@
 # include "TextObject.hpp"
 # include "OBJObject.hpp"
 # include "AnimationManager.hpp"
+# include "Cube.hpp"
 
 class Core
 {
@@ -28,6 +29,9 @@ public:
 
     OBJObject     tree; /// Must give each object an ID
     OBJObject     tree_2; /// Must give each object an ID
+
+    Cube          cube;
+    Cube          cube_2;
 
     RenderManager  render_manager;
 

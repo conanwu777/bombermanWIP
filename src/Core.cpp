@@ -142,6 +142,8 @@ Core::init()
     render_manager.addRenderedObject((IRenderedObject &)fps_counter);
     render_manager.addRenderedObject((IRenderedObject &)tree);
     render_manager.addRenderedObject((IRenderedObject &)tree_2);
+    render_manager.addRenderedObject((IRenderedObject &)cube);
+    render_manager.addRenderedObject((IRenderedObject &)cube_2);
 
     render_manager.start(this, tickCallback);
 }

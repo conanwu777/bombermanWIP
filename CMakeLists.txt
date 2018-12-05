@@ -37,6 +37,7 @@ set(SOURCES
         src/TextRenderManager.cpp
         src/TextObject.cpp
         src/AnimationManager.cpp
+        src/Cube.cpp
         src/OBJObject.cpp)
 
 set(HEADERS
@@ -70,6 +71,7 @@ set(HEADERS
         inc/TextRenderManager.hpp
         inc/TextObject.hpp
         inc/AnimationManager.hpp
+        inc/Cube.hpp
         inc/OBJObject.hpp)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")

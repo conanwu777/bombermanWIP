@@ -122,9 +122,19 @@ enum kernels
     GENERATE_BLOCK
 };
 
-//////////////
-//  Noise   //
-//////////////
+////////////////////
+//  Game Objects  //
+////////////////////
 
+enum object
+{
+    PLAYER_GAME,
+    BOMB_GAME,
+    WALL_GAME,
+    BREAKABLE_WALL_GAME,
+    FIRE_GAME,
+    BOMB_POWER_UP_GAME,
+    FIRE_POWER_UP_GAME,
+};
 
 #endif //CONSTANT_HPP

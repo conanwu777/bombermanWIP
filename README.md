@@ -11,7 +11,7 @@ UBUNTU:
 THEN:
 * If you are using CLion, reload CMakeProject.
 * If you are using command line use:
-    * cmake . && make && cd ./bin && ./minimal_opengl && cd ..
+    * cmake . && make && cd ./bin && ./opengl_engine && cd ..
 * If your cmake does not work:
   - DL it here https://cmake.org/download/
   -	Browse Source (the root folder)
