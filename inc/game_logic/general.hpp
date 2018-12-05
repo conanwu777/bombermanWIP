@@ -6,6 +6,7 @@
 # include <iostream>
 # include <iterator>
 # include <map>
+# include <math.h>
 
 using namespace std;
 

@@ -45,26 +45,13 @@ void	Display::addObj(int id, char type, Pos2D p)
 	wrefresh(w);
 }
 
-void	Display::moveObj(int id, char direction, float amount)
+void	Display::moveObj(int id, Pos2D p)
 {
 	ViewObj *o = objs[id];
 	Pos2D tmp = o->p;
-	switch (direction) {
-		case 'u':
-			o->p.y -= int(5 * amount);
-			break ;
-		case 'd':
-			o->p.y += int(5 * amount);
-			break ;
-		case 'l':
-			o->p.x -= int(10 * amount);
-			break ;
-		case 'r':
-			o->p.x += int(10 * amount);
-			break ;
-		default:
-			return ;
-	}
+	p.x *= 10;
+	p.y *= 5;
+	o->p = p;
 	mvwaddch(w, tmp.y, tmp.x, ' ');
 	for (map<int, ViewObj*>::iterator it = objs.begin(); it != objs.end(); ++it)
 		if (it->second->p.x == tmp.x && it->second->p.y == tmp.y)

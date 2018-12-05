@@ -19,7 +19,7 @@ class Display {
 		Display & operator=(Display const &rhs);
 		int	getInput();
 		void	addObj(int id, char type, Pos2D p);
-		void	moveObj(int id, char direction, float amount);
+		void	moveObj(int id, Pos2D p);
 		void	eraseObj(int id);
 };
 
