@@ -1,5 +1,5 @@
-#include "Fire.hpp"
-#include "Time.hpp"
+#include "../../inc/game_logic/Fire.hpp"
+#include "../../inc/game_logic/Time.hpp"
 
 Fire::Fire(Pos2D p, Board& b, int range, char dir) : Object('^', 0, false, false, p, b){
 	startTime = Time::curTime;

@@ -1,6 +1,6 @@
-#include "Bomb.hpp"
-#include "Fire.hpp"
-#include "Time.hpp"
+#include "../../inc/game_logic/Bomb.hpp"
+#include "../../inc/game_logic/Fire.hpp"
+#include "../../inc/game_logic/Time.hpp"
 
 Bomb::Bomb(Pos2D p, Board& b) : Object('*', 0, true, true, p, b){
 	startTime = Time::curTime;

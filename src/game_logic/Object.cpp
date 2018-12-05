@@ -1,4 +1,4 @@
-#include "Object.hpp"
+#include "../../inc/game_logic/Object.hpp"
 
 int Object::numIds = 0;
 

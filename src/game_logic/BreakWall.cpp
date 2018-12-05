@@ -1,4 +1,4 @@
-#include "BreakWall.hpp"
+#include "../../inc/game_logic/BreakWall.hpp"
 
 BreakWall::BreakWall(Pos2D p, Board& b) : Object('=', 0, true, true, p, b){
 

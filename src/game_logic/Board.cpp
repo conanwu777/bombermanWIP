@@ -1,7 +1,7 @@
-#include "Board.hpp"
-#include "Wall.hpp"
-#include "BreakWall.hpp"
-#include "Player.hpp"
+#include "../../inc/game_logic/Board.hpp"
+#include "../../inc/game_logic/Wall.hpp"
+#include "../../inc/game_logic/BreakWall.hpp"
+#include "../../inc/game_logic/Player.hpp"
 
 void Board::initBoard(){
 

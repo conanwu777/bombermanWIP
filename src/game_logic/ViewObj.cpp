@@ -1,4 +1,4 @@
-#include "Display.hpp"
+#include "../../inc/game_logic/Display.hpp"
 
 ViewObj::ViewObj() : type(0) {
 	p.x = 0;

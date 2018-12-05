@@ -1,0 +1,8 @@
+.idea/
+.vs/
+lib/
+bin/
+cmake-build-debug/
+assets/high_poly/
+config/camera.cfg
+test

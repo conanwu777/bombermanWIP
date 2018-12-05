@@ -1,4 +1,4 @@
-#include "Display.hpp"
+#include "../../inc/game_logic/Display.hpp"
 
 Display::Display(int wid, int hei) : tmpinput(0), width(wid * 10), height(hei * 5) {
 	initscr();

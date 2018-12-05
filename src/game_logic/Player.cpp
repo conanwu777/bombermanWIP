@@ -1,5 +1,5 @@
-#include "Player.hpp"
-#include "Bomb.hpp"
+#include "../../inc/game_logic/Player.hpp"
+#include "../../inc/game_logic/Bomb.hpp"
 
 Player::Player(Pos2D p, Board& b) : Object('o', 0, true, false, p, b){
 }

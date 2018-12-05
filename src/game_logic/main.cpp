@@ -1,9 +1,9 @@
-#include "Board.hpp"
-#include "Object.hpp"
-#include "Player.hpp"
-#include "Time.hpp"
+#include "../../inc/game_logic/Board.hpp"
+#include "../../inc/game_logic/Object.hpp"
+#include "../../inc/game_logic/Player.hpp"
+#include "../../inc/game_logic/Time.hpp"
 //forncurse
-#include "general.hpp"
+#include "../../inc/game_logic/general.hpp"
 
 int main()
 {
