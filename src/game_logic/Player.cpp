@@ -5,7 +5,7 @@
 Player::Player(Pos2D p, Board& b) : Object(PLAYER_GAME, 0, true, false, p, b){
 	numBombs = 1;
 	bombRange = 1;
-	speed = 0.2;
+	speed = 0.05;
 }
 
 bool	Player::tryMove(float x, float y, char dir, float xOff, float yOff, bool check){
