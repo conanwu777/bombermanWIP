@@ -12,7 +12,7 @@ bool	Player::tryMove(float x, float y, char dir, float xOff, float yOff, bool ch
 	if (check || (x >= 0 && x < board.bounds.x && y >= 0 && y < board.bounds.y && board.checkEmpty(x,y))){
 		// board.swap(pos.x, pos.y, x, y);
 		if (dir == 'r' || dir == 'l'){
-			if (fabs(off.y) > 0.25f)
+			if (fabs(off.y) > 0.35f)
 				return false;
 			else{
 //				board.moveDisplay(id, dir, 0.2);
@@ -21,7 +21,7 @@ bool	Player::tryMove(float x, float y, char dir, float xOff, float yOff, bool ch
 		}
 
 		if (dir == 'u' || dir == 'd'){
-			if (fabs(off.x) > 0.25f)
+			if (fabs(off.x) > 0.35f)
 				return false;
 			else{
 //				board.moveDisplay(id, dir, 0.2);
@@ -71,7 +71,7 @@ void Player::dropBomb(){
 	}
 }
 void Player::onBomb(){
-	// cout << "You've DIEDED \n";
+	cout << "You've DIEDED \n";
 }
 
 void Player::addBomb(){
@@ -85,25 +85,25 @@ void Player::incRange(int num){
 void Player::move(char dir){
 	switch(dir){
 		case 'u':
-			if (off.y < 0)
+			if (off.y < speed)
 				tryMove(pos.x, pos.y - 1, dir, 0, -speed, false);
 			else
 				tryMove(pos.x, pos.y - 1, dir, 0, -speed, true);
 			break;
 		case 'd':
-			if (off.y > 0)
+			if (off.y > -speed)
 				tryMove(pos.x, pos.y + 1, dir, 0, speed, false);
 			else
 				tryMove(pos.x, pos.y + 1, dir, 0, speed, true);
 			break;
 		case 'l':
-			if (off.x < 0)
+			if (off.x < speed)
 				tryMove(pos.x - 1, pos.y, dir, -speed, 0, false);
 			else
 				tryMove(pos.x - 1, pos.y, dir, -speed, 0, true);
 			break;
 		case 'r':
-			if (off.x > 0)
+			if (off.x > -speed)
 				tryMove(pos.x + 1, pos.y, dir, speed, 0, false);
 			else
 				tryMove(pos.x + 1, pos.y, dir, speed, 0, true);

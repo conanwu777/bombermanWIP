@@ -25,7 +25,7 @@ all: $(NAME)
 
 clean:
 	@echo $(RED)Cleaning o files
-	@/bin/rm -f $(OBJ)
+	@/bin/rm -f *.o
 
 fclean: clean
 	@echo $(RED)Removing excutable

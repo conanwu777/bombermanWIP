@@ -20,7 +20,7 @@ int main()
 	KeyInput::setBoard(&b);
 	glfwSetKeyCallback(d.win.window, KeyInput::keyDown);
 
-	while(1){
+	while(!glfwWindowShouldClose(d.win.window)){
 		Time::updateTime();
 		b.updateObjs();
 		KeyInput::checkInput(d.win.window);
