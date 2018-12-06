@@ -5,6 +5,7 @@
 #include <memory>
 # include "RenderManager.hpp"
 # include "IRenderedObject.hpp"
+#include "GameLogic.hpp"
 
 class Cube : IRenderedObject
 {
@@ -21,6 +22,8 @@ public:
     };
 
     ModelData       model;
+
+    GameLogic       *game_logic;
 
     Cube(void);
     ~Cube(void);

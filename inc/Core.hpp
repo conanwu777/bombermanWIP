@@ -34,7 +34,6 @@ public:
     OBJObject     tree_2; /// Must give each object an ID
 
     Cube          cube;
-    Cube          cube_2;
 
     RenderManager  render_manager;
 

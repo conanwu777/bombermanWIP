@@ -153,20 +153,22 @@ void Cube::initGL(RenderManager const &render_manager)
 
 void Cube::preRender(RenderManager const &render_manager)
 {
-    glUniform1i(_texture_loc, _texture_id);
-    _m_matrix = glm::mat4(1.0f);
-    _m_matrix *= glm::translate(_m_matrix, glm::vec3(0.0f, -5.0f, 0.0f));
-    /// Convert to mat3 and back to mat4 to remove any translation component.
-    _mvp_matrix = render_manager.getCamera()->perspective_matrix;
-    _mvp_matrix *= render_manager.getCamera()->view_matrix;
-    _mvp_matrix *= _m_matrix;
-    glUniformMatrix4fv(_mvp_matrix_loc, 1, GL_FALSE, glm::value_ptr(_mvp_matrix));
+    _vp_matrix = render_manager.getCamera()->perspective_matrix;
+    _vp_matrix *= render_manager.getCamera()->view_matrix;
 }
 
 void Cube::render(RenderManager const &render_manager)
 {
-    glBindVertexArray(_vao);
-    glBindBuffer(GL_ARRAY_BUFFER, _vbos[0]);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _vbos[1]);
-    glDrawElements(GL_TRIANGLES, model.f_num_elem, GL_UNSIGNED_INT, 0);
+    for (auto &obj: game_logic->game_objects)
+    {
+        _mvp_matrix = _vp_matrix;
+        _mvp_matrix *= obj.matrix;
+        glUniform1i(_texture_loc, obj.texture_id);
+        glUniformMatrix4fv(_mvp_matrix_loc, 1, GL_FALSE, glm::value_ptr(_mvp_matrix));
+
+        glBindVertexArray(_vao);
+        glBindBuffer(GL_ARRAY_BUFFER, _vbos[0]);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _vbos[1]);
+        glDrawElements(GL_TRIANGLES, model.f_num_elem, GL_UNSIGNED_INT, 0);
+    }
 }

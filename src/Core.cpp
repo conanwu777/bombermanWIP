@@ -123,6 +123,7 @@ void
 Core::init()
 {
     game_logic.init();
+    cube.game_logic = &game_logic;
 //    cl_wrapper.init();
     animation_manager.init();
     tree.linked_matrix = &animation_manager.v_model_attrib[0].matrix;
@@ -133,10 +134,9 @@ Core::init()
     render_manager.addRenderedObject((IRenderedObject &)skybox);
     render_manager.addRenderedObject((IRenderedObject &)axes);
     render_manager.addRenderedObject((IRenderedObject &)fps_counter);
-    render_manager.addRenderedObject((IRenderedObject &)tree);
-    render_manager.addRenderedObject((IRenderedObject &)tree_2);
+//    render_manager.addRenderedObject((IRenderedObject &)tree);
+//    render_manager.addRenderedObject((IRenderedObject &)tree_2);
     render_manager.addRenderedObject((IRenderedObject &)cube);
-    render_manager.addRenderedObject((IRenderedObject &)cube_2);
 
     render_manager.start(this, tickCallback);
 }
