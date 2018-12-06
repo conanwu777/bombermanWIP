@@ -1,7 +1,7 @@
 NAME = test
 CPPC = clang++
 CFLAGS = -lcurses
-SRC = src/game_logic/*.cpp
+SRC = src/game_logic/*.cpp src/game_logic/shaderpix/srcs/*.cpp 
 OBJ = $(SRC:.cpp=.o)
 FRAMEWORKS = -framework OpenGl -w
 BREW_INC = -I ~/.brew/include

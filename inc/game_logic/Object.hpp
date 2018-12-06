@@ -13,7 +13,7 @@ class Object{
 		Object(objectType type, int life, bool killable, bool solid, Pos2D pos, Board& b);
 		Pos2D getPos();
 		int getId();
-		int getType();
+		objectType getType();
 		bool isSolid();
 		bool isMoving();
 		bool isKillable();

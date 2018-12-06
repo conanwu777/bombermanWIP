@@ -24,7 +24,7 @@ int Object::getId(){
 	return id;
 }
 
-int Object::getType(){
+objectType Object::getType(){
 	return type;
 }
 
