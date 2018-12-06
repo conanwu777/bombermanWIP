@@ -5,6 +5,7 @@
 #include "../../inc/game_logic/Input.hpp"
 //forncurse
 #include "../../inc/game_logic/general.hpp"
+#include <cstdlib>
 
 int main()
 {
@@ -36,6 +37,8 @@ int main()
 			b.objs[0]->move('r');
 		}
 		if (in == ' '){
+			// std::string command = "afplay test.wav";
+    		// system(command.c_str());
 			dynamic_cast<Player*>(b.objs[0])->dropBomb();
 		}
 	}
