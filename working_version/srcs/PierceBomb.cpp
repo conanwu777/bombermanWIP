@@ -1,28 +1,28 @@
-#include "Bomb.hpp"
+#include "PierceBomb.hpp"
 #include "Fire.hpp"
 #include "Time.hpp"
 
-Bomb::Bomb(Pos2D p, Board& b, int r, Player& pl) : player(pl), Object(BOMB_GAME, 0, true, true, p, b){
+PierceBomb::PierceBomb(Pos2D p, Board& b, int r, Player& pl) : player(pl), Object(PIERCE_BOMB_GAME, 0, true, true, p, b){
 	startTime = Time::curTime;
 	duration = 3;
 	range = r;
 }
 
-void	Bomb::update()
+void	PierceBomb::update()
 {
 	if (Time::curTime > startTime + duration)
 		explode();
 }
 
-void	Bomb::onBomb(){
+void	PierceBomb::onBomb(){
 	explode();
 }
 
-void	Bomb::explode()
+void	PierceBomb::explode()
 {
 	player.addBomb();
 	board.eraseObject(id);
-	board.objs.push_back(new Fire(pos, board, range, 'a', false));
+	board.objs.push_back(new Fire(pos, board, range, 'a', true));
 	board.display.addObj(board.objs[board.objs.size() - 1]->getId(),
 		board.objs[board.objs.size() - 1]->getType(),
 		board.objs[board.objs.size() - 1]->getPos());

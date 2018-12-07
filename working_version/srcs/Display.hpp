@@ -21,6 +21,8 @@ class Display {
 	public:
 		int tmpinput;
 
+		unsigned int textures[10];
+
 		Window win;
 		Camera cam;
 		Shader sh;
@@ -31,6 +33,7 @@ class Display {
 		Display & operator=(Display const &rhs);
 		void	renderLoop();
 		int	getInput();
+		void	loadTexture(char *str, int num);
 		void	addObj(int id, objectType type, Pos2D p);
 		void	moveObj(int id, char dir, float x, float y);
 		void	eraseObj(int id);

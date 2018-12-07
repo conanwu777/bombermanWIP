@@ -2,6 +2,7 @@
 #include "Wall.hpp"
 #include "BreakWall.hpp"
 #include "Player.hpp"
+#include "Enemy.hpp"
 #include "BombPowerUp.hpp"
 #include "FirePowerUp.hpp"
 
@@ -24,6 +25,13 @@ void Board::initBoard(){
 	tmp.x = 2;
 
 	objs.push_back(new FirePowerUp(tmp, *this));
+	display.addObj(objs[objs.size() - 1]->getId(),
+		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
+
+	tmp.x = 1;
+	tmp.y = 2;
+
+	objs.push_back(new Enemy(tmp, *this));
 	display.addObj(objs[objs.size() - 1]->getId(),
 		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
 
@@ -75,13 +83,19 @@ bool Board::checkEmpty(int x, int y)
 	return true;
 }
 
-void Board::burn(Pos2D pos)
+bool Board::burn(Pos2D pos)
 {
 	size = objs.size();
 	for (int i = 0; i < size; i++)
-		if (objs[i]->getPos().x == pos.x && objs[i]->getPos().y == pos.y && objs[i]->isKillable()){
-			objs[i]->onBomb();
+		if (objs[i]->getPos().x == pos.x && objs[i]->getPos().y == pos.y){
+			if (objs[i]->getType() == FIRE_GAME){
+				return 0;
+			}
+			if (objs[i]->isKillable()){
+				objs[i]->onBomb();
+			}
 		}
+	return 1;
 }
 
 int Board::checkFlameable(int x, int y)
@@ -89,8 +103,9 @@ int Board::checkFlameable(int x, int y)
 	int num = 1;
 	for (int i = 0; i < objs.size(); i++)
 		if (objs[i]->getPos().x == x && objs[i]->getPos().y == y && objs[i]->isSolid()){
-			if (objs[i]->getPos().x == x && objs[i]->getPos().y == y && objs[i]->isKillable())
+			if (objs[i]->getPos().x == x && objs[i]->getPos().y == y && objs[i]->isKillable()){
 				num = 2;
+			}
 			else
 				return 0;
 		}
@@ -110,6 +125,21 @@ void	Board::playerMoved(int x, int y, Player& pl){
 		}
 	}
 }
+
+void	Board::enemyMoved(int x, int y, Enemy& en){
+	
+	for (int j = 0; j < objs.size(); j++){
+		if (objs[j]->getPos().x == x && objs[j]->getPos().y == y){
+			if (objs[j]->getType() == PLAYER_GAME){
+				objs[j]->onBomb();
+			}
+			else if (objs[j]->getType() == FIRE_GAME){
+				en.onBomb();
+			}
+		}
+	}
+}
+
 
 
 Board::Board(int sX, int sY, Display& d) : display(d)

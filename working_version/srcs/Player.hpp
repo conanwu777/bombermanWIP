@@ -7,7 +7,7 @@
 class Player : public Object{
 	public:
 		Player(Pos2D pos, Board& b);
-		bool tryMove(float x, float y, char dir, float xOff, float yOff, bool check);
+		bool tryMove(int x, int y, char dir, float xOff, float yOff, bool check);
 		void dropBomb();
 		void move(char dir);
 		void addBomb();

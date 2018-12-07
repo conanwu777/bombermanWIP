@@ -7,6 +7,7 @@
 
 class Object;
 class Player;
+class Enemy;
 
 using namespace std;
 
@@ -19,10 +20,11 @@ class Board{
 		void moveDisplay(int, char, float, float);
 		void initBoard();
 		void updateObjs();
+		void enemyMoved(int x, int y, Enemy& en);
 		void playerMoved(int x, int y, Player& pl);
 		bool checkEmpty(int x, int y);
 		int checkFlameable(int x, int y);
-		void burn(Pos2D pos);
+		bool burn(Pos2D pos);
 		void eraseObject(int id);
 		Display& display;
 

@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "Bomb.hpp"
+#include "PierceBomb.hpp"
 #include <math.h>
 
 Player::Player(Pos2D p, Board& b) : Object(PLAYER_GAME, 0, true, false, p, b){
@@ -8,7 +9,7 @@ Player::Player(Pos2D p, Board& b) : Object(PLAYER_GAME, 0, true, false, p, b){
 	speed = 0.05;
 }
 
-bool	Player::tryMove(float x, float y, char dir, float xOff, float yOff, bool check){
+bool	Player::tryMove(int x, int y, char dir, float xOff, float yOff, bool check){
 	if (check || (x >= 0 && x < board.bounds.x && y >= 0 && y < board.bounds.y && board.checkEmpty(x,y))){
 		// board.swap(pos.x, pos.y, x, y);
 		if (dir == 'r' || dir == 'l'){
@@ -64,7 +65,7 @@ bool	Player::tryMove(float x, float y, char dir, float xOff, float yOff, bool ch
 void Player::dropBomb(){
 	if (numBombs > 0 && board.checkEmpty(pos.x, pos.y)){
 		numBombs--;
-		board.objs.push_back(new Bomb(pos, board, bombRange, *this));
+		board.objs.push_back(new PierceBomb(pos, board, bombRange, *this));
 		board.display.addObj(board.objs[board.objs.size() - 1]->getId(),
 							 board.objs[board.objs.size() - 1]->getType(),
 							 board.objs[board.objs.size() - 1]->getPos());

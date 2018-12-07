@@ -4,7 +4,7 @@
 Camera::Camera(){
 	first = true;
 	xRot = 0;
-	yRot = 0;
+	yRot = PI / 2;
 	projectionMat = (float*)calloc(16, sizeof(float));
 	yawMat = (float*)calloc(16, sizeof(float));
 	pitchMat = (float*)calloc(16, sizeof(float));
@@ -20,9 +20,9 @@ Camera::Camera(){
 	yawMat[10] = 1;
 	yawMat[15] = 1;
 
-	pos[0] = 0;
+	pos[0] = -5;
 	pos[1] = 0;
-	pos[2] = 0;
+	pos[2] = -5;
 
 	viewMat[0] = 1;
 	viewMat[5] = 1;
@@ -33,6 +33,8 @@ Camera::Camera(){
 	projectionMat[10] = -FAR / (FAR - NEAR);
 	projectionMat[11] = -1;
 	projectionMat[14] = -FAR * NEAR / (FAR - NEAR);
+	
+	reload();
 	reloadCameraAngle();
 }
 
