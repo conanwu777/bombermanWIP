@@ -3,8 +3,6 @@
 #include "BreakWall.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
-#include "BombPowerUp.hpp"
-#include "FirePowerUp.hpp"
 
 void Board::initBoard(){
 
@@ -17,20 +15,21 @@ void Board::initBoard(){
 	objs.push_back(new Player(tmp, *this));
 	display.addObj(objs[objs.size() - 1]->getId(),
 		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
+
 	tmp.x = 3;
-
-	objs.push_back(new BombPowerUp(tmp, *this));
-	display.addObj(objs[objs.size() - 1]->getId(),
-		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
-	tmp.x = 2;
-
-	objs.push_back(new FirePowerUp(tmp, *this));
+	tmp.y = 4;
+	objs.push_back(new Enemy(tmp, *this));
 	display.addObj(objs[objs.size() - 1]->getId(),
 		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
 
-	tmp.x = 1;
-	tmp.y = 2;
+	tmp.x = 6;
+	tmp.y = 5;
+	objs.push_back(new Enemy(tmp, *this));
+	display.addObj(objs[objs.size() - 1]->getId(),
+		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
 
+	tmp.x = 5;
+	tmp.y = 8;
 	objs.push_back(new Enemy(tmp, *this));
 	display.addObj(objs[objs.size() - 1]->getId(),
 		objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
@@ -48,10 +47,14 @@ void Board::initBoard(){
 				display.addObj(objs[objs.size() - 1]->getId(),
 					objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
 			}
-			else if(x + y > 6 && x + y < bounds.x + bounds.y - 6){
-				objs.push_back(new BreakWall(tmp, *this));
-				display.addObj(objs[objs.size() - 1]->getId(),
-					objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
+			else if(x + y > 4){
+				if ((x != 3 || y != 4) && (x != 3 || y != 3) && (x != 6 || y != 5) && (x != 9 || y != 9) && (x != 7 || y != 5) && (x != 5 || y != 8) && (x != 5 || y != 9)){
+					if (rand() % 3 < 1){
+						objs.push_back(new BreakWall(tmp, *this));
+						display.addObj(objs[objs.size() - 1]->getId(),
+							objs[objs.size() - 1]->getType(), objs[objs.size() - 1]->getPos());
+					}
+				}
 			}
 		}
 	}
@@ -59,8 +62,8 @@ void Board::initBoard(){
 
 void Board::updateObjs()
 {
-	for (i = 0; i < objs.size(); i++)
-		objs[i]->update();
+	for (int j = 0; j < objs.size(); j++)
+		objs[j]->update();
 }
 
 void Board::eraseObject(int id)

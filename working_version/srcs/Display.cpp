@@ -7,9 +7,9 @@
 
 Display::Display(int wid, int hei) : win("BomberBoy", W ,H), cam(),
 sh("engine/shaders/vertShader.vs", "engine/shaders/regFrag.fs"),
+uiSh("engine/shaders/ui.vs", "engine/shaders/regFrag.fs"),
 in(cam, win), tmpinput(0), width(wid), height(hei) {
 	
-
 	glEnable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
 	glfwSetInputMode(win.window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -30,6 +30,17 @@ in(cam, win), tmpinput(0), width(wid), height(hei) {
 	loadTexture("engine/texture/firePup.png", FIRE_POWER_UP_GAME);
 	loadTexture("engine/texture/firePup.png", BOMB_POWER_UP_GAME);
 	loadTexture("engine/texture/bomb.png", ENEMY_GAME);
+
+	// Panel* pan = new Panel(uiSh, cam, 0, 0, 0, 1, 1, 1, textures[PLAYER_GAME]);
+	
+	// pan->Activate();
+
+	// Pos2D tmp;
+	// tmp.x = 0;
+	// tmp.y = 0;
+	// ViewObj *obj = new ViewObj(PLAYER_GAME, tmp);
+	// obj->obj = pan;
+	// objs[1000] = obj;
 }
 
 void	Display::renderLoop(){
@@ -52,7 +63,7 @@ Display::~Display() {
 }
 
 Display::Display(Display const &rhs) :  win("BomberBoy", W ,H), cam(),
-sh("engine/shaders/vertShader.vs", "engine/shaders/regFrag.fs"), in(cam, win)
+sh("engine/shaders/vertShader.vs", "engine/shaders/regFrag.fs"), uiSh("engine/shaders/ui.vs", "engine/shaders/regFrag.fs"), in(cam, win)
 {
 	*this = rhs;
 }

@@ -43,7 +43,6 @@ bool	Enemy::tryMove(int x, int y, char dir, float xOff, float yOff, bool check){
 			pos.y--;
 			board.enemyMoved(pos.x, pos.y, *this);
 		}
-		cout << "here ? \n";
 
 		return true;
 	}
@@ -79,17 +78,18 @@ void Enemy::update(){
 			break;
 	}
 	if (!moveSucces){
-		switch (dir){
-			case'u':
+		int num = rand() % 4;
+		switch (num){
+			case 0:
 				dir = 'd';
 				break;
-			case'd':
+			case 1:
 				dir = 'u';
 				break;
-			case'l':
+			case 2:
 				dir = 'r';
 				break;
-			case'r':
+			case 3:
 				dir = 'l';
 				break;
 		}

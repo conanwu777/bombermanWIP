@@ -12,11 +12,14 @@ class Player : public Object{
 		void move(char dir);
 		void addBomb();
 		void incRange(int range);
+		void speedUp();
+		void activatePierce();
 		void onBomb();
 	private:
-		int numBombs;
-		int bombRange;
-		float speed;
+		int 	numBombs;
+		int 	bombRange;
+		bool	pierce;
+		float	speed;
 };
 
 #endif

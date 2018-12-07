@@ -13,6 +13,8 @@ int main()
 
 	Time::updateTime();
 
+	srand(time(NULL));
+
 	Display d(11, 11);
 	Board b(11, 11, d);
 

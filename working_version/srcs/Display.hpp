@@ -10,6 +10,7 @@
 #include "../engine/srcs/Shader.hpp"
 #include "../engine/srcs/RenderObject.hpp"
 #include "../engine/srcs/Cube.hpp"
+#include "../engine/srcs/Panel.hpp"
 #include "../engine/srcs/Window.hpp"
 #include "../engine/srcs/Camera.hpp"
 #include "../engine/srcs/Input.hpp"
@@ -21,11 +22,12 @@ class Display {
 	public:
 		int tmpinput;
 
-		unsigned int textures[10];
+		unsigned int textures[20];
 
 		Window win;
 		Camera cam;
 		Shader sh;
+		Shader uiSh;
 		Input in;
 		Display(int width, int height);
 		~Display();

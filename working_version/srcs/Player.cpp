@@ -7,6 +7,7 @@ Player::Player(Pos2D p, Board& b) : Object(PLAYER_GAME, 0, true, false, p, b){
 	numBombs = 1;
 	bombRange = 1;
 	speed = 0.05;
+	pierce = false;
 }
 
 bool	Player::tryMove(int x, int y, char dir, float xOff, float yOff, bool check){
@@ -65,7 +66,11 @@ bool	Player::tryMove(int x, int y, char dir, float xOff, float yOff, bool check)
 void Player::dropBomb(){
 	if (numBombs > 0 && board.checkEmpty(pos.x, pos.y)){
 		numBombs--;
-		board.objs.push_back(new PierceBomb(pos, board, bombRange, *this));
+		if (pierce){
+			board.objs.push_back(new PierceBomb(pos, board, bombRange, *this));
+		}else{
+			board.objs.push_back(new Bomb(pos, board, bombRange, *this));
+		}
 		board.display.addObj(board.objs[board.objs.size() - 1]->getId(),
 							 board.objs[board.objs.size() - 1]->getType(),
 							 board.objs[board.objs.size() - 1]->getPos());
@@ -77,6 +82,15 @@ void Player::onBomb(){
 
 void Player::addBomb(){
 	numBombs++;
+}
+
+void Player::speedUp(){
+	speed += 0.01f;
+}
+
+
+void Player::activatePierce(){
+	pierce = true;
 }
 
 void Player::incRange(int num){
